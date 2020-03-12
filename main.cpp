@@ -396,7 +396,7 @@ int calc_score(vector<vector<int>>& pos) {
 
 void swap_two(int i1, int j1, int i2, int j2) {
     int nxt_score = best_score;
-    if (abs(i1 - i2) <= 1 || abs(j1 - j2) <= 1) {
+    if ((abs(i1 - i2) <= 1 && j1 == j2) || (abs(j1 - j2) <= 1 && i1 == i2)) {
         // とりあえず接してたら差分計算がバグるので保留
         return;
     } else {
@@ -414,7 +414,7 @@ void swap_two(int i1, int j1, int i2, int j2) {
     }
 }
 
-void hill_climb(int seconds = 5) {
+void hill_climb(int seconds = 20 * 60) {
     auto start = chrono::steady_clock::now();
     while (1) {
         auto now = chrono::steady_clock::now();
